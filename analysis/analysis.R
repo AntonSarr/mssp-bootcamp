@@ -4,7 +4,7 @@ library(lubridate)
 library(ggplot2)
 
 # Data uploading and cleaning
-data <- read_csv("Affordable_Housing_Production_by_Building_20260821.csv")
+data <- read_csv("../data/Affordable_Housing_Production_by_Building_20260821.csv")
 data_f <- data[!is.na(data$`All Counted Units`), ]
 
 data_f$`Project Start Date` <- mdy(data_f$`Project Start Date`)
