@@ -4,7 +4,7 @@ library(lubridate)
 library(ggplot2)
 
 # Data uploading and cleaning
-data <- read_csv("../data/Affordable_Housing_Production_by_Building_20260821.csv")
+data <- read_csv("data/Affordable_Housing_Production_by_Building_20260821.csv")
 data_f <- data[!is.na(data$`All Counted Units`), ]
 
 data_f$`Project Start Date` <- mdy(data_f$`Project Start Date`)
@@ -48,6 +48,8 @@ by_month <- projects |>
     `# Units` = sum(`Units`),
     `# Projects` = sum(`Projects Cnt`)
   )
+by_month <- by_month |>
+  mutate(`6th or 12th month` = if_else(format(`Project Start Month`, "%m") %in% c("06", "12"), 1, 0))
 
 # Aggregating by year
 by_year <- projects |> 
@@ -137,3 +139,6 @@ ggplot(by_year, aes(x = `Project Start Year`, y = `# Projects`)) +
     hjust = 1.1,
     vjust = 1.5
   )
+
+# Correlation matrix
+cor(by_month[,c("# Units", "# Projects", "6th or 12th month")], method = "pearson")

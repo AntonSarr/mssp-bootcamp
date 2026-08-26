@@ -6,9 +6,11 @@ Dataset: https://data.cityofnewyork.us/Housing-Development/Affordable-Housing-Pr
 
 Analysis: `analysis/analysis.R`
 
+Slides: https://docs.google.com/presentation/d/1brPc4voYOb-q088DqkDFIdorvy1kWR8zB6z0q8dNl5w/edit?usp=sharing
+
 Analysis plan:
 1. Review the dataset and available columns
 2. Formulate an object of interest: **"The number of affordable units and launched projects in NYC between 2014 and 2026"**. Formulate a measure of interest: **a trend over time (linear regression coefficient)**.
-3. Perform EDA considering columns of interest: showcase distributions, plots, make notes on data quality and N/A values.
+3. Perform EDA with consideration of columns of interest: showcase distributions, plots, make notes on data quality and N/A values.
 4. Fit a regression
 5. Make conclusions
