@@ -62,6 +62,11 @@ by_year <- by_year[by_year$`Project Start Year` < '2026-01-01', ]
 by_year <- by_year |> arrange(`Project Start Year`)
 by_year$`Project Start Year Numeric` <- 0:(nrow(by_year)-1)
 
+# Boxplot with # Units
+ggplot(projects, aes(y = `Units`)) +
+  geom_boxplot(fill = "skyblue", color = "black", alpha = 0.7, outliers=FALSE) +
+  labs(title="Number Of Units Per Project (outliers excluded)")
+
 # Visualize monthly data
 
 ggplot(by_month, aes(`Project Start Month`, `# Units`)) +
@@ -118,6 +123,9 @@ ggplot(by_year, aes(x = `Project Start Year`, y = `# Units`)) +
     vjust = 1.5
   )
 
+# Units trend summary
+summary(units_trend)
+
 # Calculate and visualize a # projects trend
 projects_trend <- lm(`# Projects` ~ `Project Start Year Numeric`, data = by_year)
 by_year$`# Projects Predicted` <- predict(projects_trend)
@@ -140,5 +148,10 @@ ggplot(by_year, aes(x = `Project Start Year`, y = `# Projects`)) +
     vjust = 1.5
   )
 
+# Projects trend summary
+summary(projects_trend)
+
 # Correlation matrix
 cor(by_month[,c("# Units", "# Projects", "6th or 12th month")], method = "pearson")
+
+
